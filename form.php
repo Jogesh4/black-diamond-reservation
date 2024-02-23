@@ -1,8 +1,32 @@
 <?php
 
-if(session_status() !== PHP_SESSION_ACTIVE ) session_start();  
+global $allPackages;
+if(session_status() !== PHP_SESSION_ACTIVE ) session_start();
 
 $errors = $_SESSION['form_errors'] ?? [];
+
+include_once __DIR__ . '/includes/Package.php';
+
+$type = $_GET['type'] ?? null;
+$package = $_GET['package'] ?? null;
+
+$packages = [];
+if ($type && $package) {
+    $packages = findPackage($type, $package, $allPackages);
+}
+
+if (empty($packages)) {
+    header('Location: /');
+    exit();
+}
+
+$package = $packages[array_key_first($packages)];
+
+// TODO: If no package is found, redirect to the home page
+
+// Get non available times
+// Get available time for given
+
 ?>
 <!doctype html>
 <html lang="en" style="background-color: #000; padding-bottom: 0px;">
@@ -2573,6 +2597,7 @@ $errors = $_SESSION['form_errors'] ?? [];
         $(".b-notes").notes(".b-notes");
 
         $("#calendar").datepicker({
+            startDate: new Date(),
             todayHighlight: true,
             weekStart: 1
         }).on({ 'changeDate': function (e) {
@@ -2630,7 +2655,57 @@ $errors = $_SESSION['form_errors'] ?? [];
         }
     });
 </script>
+<script>
+    let memo = {};
 
+    function getTimeSlots(date) {
+        // Check if the result for the given date is in the memo object
+        if (memo[date]) {
+            return Promise.resolve(memo[date]);
+        }
+
+        // Define the URL of the API endpoint
+        const url = `/available-date.php?date=${date}`;
+
+        // Send a GET request to the server
+        fetch(url)
+            .then(response => {
+                // Check if the request was successful
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                // Parse the response as JSON
+                return response.json();
+            })
+            .then(data => {
+                memo[date] = data;
+
+                // Handle the parsed JSON data
+                if (data.timeSlots && data.timeSlots.length > 0) {
+                    handleTimeSlots(data.timeSlots);
+                } else {
+                    handleNoSlotsAvailable();
+                }
+            })
+            .catch(error => {
+                // Handle any errors that occurred during the fetch operation
+                console.error('An error occurred:', error);
+            });
+}
+
+    function handleTimeSlots(timeSlots) {
+        // Handle the received time slots
+        // This could be displaying them in the UI, logging them to the console, etc.
+        console.log('Available time slots:', timeSlots);
+    }
+
+    function handleNoSlotsAvailable() {
+        // Handle the case when there are no available time slots
+        // This could be displaying a message in the UI, logging a message to the console, etc.
+        console.log('No available time slots for this date.');
+    }
+</script>
 </body>
 </html>
 <?php
