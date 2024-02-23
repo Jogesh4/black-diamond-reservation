@@ -39,4 +39,14 @@ class Package {
         $this->price = $price;
         $this->description = $description;
     }
+
+    /**
+     * Get the formatted type of the package.
+     *
+     * @return string The formatted type of the package.
+     */
+    public function formattedType(): string
+    {
+        return ucfirst($this->type);
+    }
 }

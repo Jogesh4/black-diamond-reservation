@@ -9,7 +9,7 @@ global  $connection;
 include_once  __DIR__ . '/includes/db.php';
 
 $reservationManager = new ReservationManager($connection);
-$availableTimeSlots = $reservationManager->getAvailableTimeSlots('2022-12-31');
+$availableTimeSlots = $reservationManager->getAvailableTimeSlots($date);
 
 // Return formatted JSON response
 header('Content-Type: application/json');

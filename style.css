@@ -223,7 +223,10 @@ h1, h2, h3, h4, h5, h6 {
   font-family: "Fjalla One", sans-serif;
   opacity: 1;
 }
-
+a .fb, a .insta, a .location{
+    color: #fff; float:left; margin-right:20px;
+}
+.fb, .insta, .location {font-size: 25px;}
 .mobile-nav a:hover {
   color: #fcb618;
 }
@@ -373,6 +376,11 @@ End of comment */
 }
 .p-div-time:hover{ background: #fcb618;}
 .p-div-time.active{ background: #fcb618;}
+
+.p-div-time:has([type="radio"]:checked) {
+  background: #fcb618;
+}
+
 .p-div-time1{
   text-align: center;
   width: 100%;
