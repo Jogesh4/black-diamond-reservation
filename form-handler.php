@@ -1,7 +1,9 @@
 <?php
 
-session_start();
-include_once __DIR__ . '/includes/env.php';
+error_reporting(E_ALL); ini_set('display_errors', 1);
+// if not session already started
+if(session_status() !== PHP_SESSION_ACTIVE ) session_start();
+include_once __DIR__ . '/includes/db.php';
 
 unset($_SESSION['form_errors']);
 

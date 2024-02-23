@@ -1,13 +1,16 @@
 <?php
-session_start();
+
+error_reporting(E_ALL); ini_set('display_errors', 1);
+
+// if not session already started
+if(session_status() !== PHP_SESSION_ACTIVE ) session_start();  
 include_once __DIR__ . '/includes/db.php';
 
-var_dump($_SESSION);
-if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
+if (!isset($_SESSION['admin-logged']) || $_SESSION['admin-logged'] !== true) {
     // If not, redirect them to the login page
 
-    header('Location: '.$pageUrl.'/login.php');
-    exit;
+    // header('Location: '.$pageUrl.'/login.php');
+    // exit;
 }
 
 // Number of items per page

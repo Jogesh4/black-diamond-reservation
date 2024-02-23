@@ -1,5 +1,6 @@
 <?php
-session_start();
+error_reporting(E_ALL); ini_set('display_errors', 1);
+if(session_status() !== PHP_SESSION_ACTIVE ) session_start();  
 include_once __DIR__ . '/includes/env.php';
 
 // Check if the form is submitted
@@ -10,8 +11,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Here you would typically check the username and password against a database
     // For simplicity, we're just checking against hardcoded values
     if ($username === 'admin' && $password === 'password') {
-        $_SESSION['loggedin'] = true;
-        header('Location: '.$pageUrl.'/admin.php');
+        $_SESSION['admin-logged'] = 'true';
+        header('Location: '.$pageUrl.'/admin.php?kdnsddsas');
         exit;
     } else {
         $error = 'Invalid username or password';
