@@ -6,6 +6,80 @@ body {
   padding-bottom: 20px;
   background-color: #f5f5f5;
 }
+/*----*/
+.bg-section {
+    background: url(Backgroun.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding: 150px 0 50px 0;
+    color: #fff;
+    text-align: center;
+    margin-top: -130px;font-size:30px;
+}
+.bg-section h1{color:#fcb618;font-size: 95px;
+    font-weight: 700;
+    text-transform: uppercase;}
+.wpcf7-form{margin-top:50px;}
+.fjalla-one-regular {
+  font-family: "Fjalla One", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+h1, h2, h3, h4, h5, h6 {
+    font-family: "Fjalla One", sans-serif!important;
+}
+.title {
+    color: #fcb618;
+    margin-bottom: 10px;
+    padding-bottom: 10px;font-size: 26px;
+}
+#menu-footer {
+    padding-left: 20px;
+    color: #fcb618;
+}
+#menu-footer li{padding-bottom:10px;}
+#menu-footer li a{
+    color: #fff;
+    text-decoration: none;
+}
+#footer-info {
+    text-align: left;
+    color: #666;
+    padding-bottom: 10px;padding-top: 10px;
+    float: left;
+}
+.et-social-icons {
+    float: right;
+}
+.et-social-icons li {
+    display: inline-block;
+    margin-left: 20px;
+}
+.et-social-icon a {
+    display: inline-block;
+    font-size: 24px;
+    position: relative;
+    text-align: center;
+    -webkit-transition: color 300ms ease 0s;
+    transition: color 300ms ease 0s;
+    color: #666;
+    text-decoration: none;
+}
+.et-social-facebook a.icon:before {
+    content: "\f39e";font-family:fontawesome;
+}
+.et-social-twitter a.icon:before {
+    content: "\e61b";font-family:fontawesome;
+}
+.et-social-instagram a.icon:before {
+    content: "\f16d";font-family:fontawesome;
+}
+.et-social-icon span {
+    display: none;
+}
+#footer-bottom{padding-top:20px;}
+/*----*/
+
 .form{
     width: 80%;
     margin: 0 auto;
@@ -39,7 +113,7 @@ body {
 #main-footer{
   color: #fff;
   background: #222222;
-  padding: 50px 0;
+  padding: 50px 0 0 0;
   margin-top: 50px;
 }
 .hamburger-menu {
@@ -47,14 +121,14 @@ body {
   position: absolute;
   top: 15px;
   right: 0px;
-  
+  height:55px;
   cursor: pointer;
 }
 
 .bar,
 .bar:after,
 .bar:before {
-  width: 35px;
+  width: 25px;
   height: 2px;
 }
 
@@ -73,7 +147,7 @@ body {
   content: "";
   position: absolute;
   left: 0;
-  bottom: 8px;
+  bottom: 7px;
   background: rgb(251 181 24);
   transition: bottom 300ms 300ms cubic-bezier(0.23, 1, 0.32, 1),
     transform 300ms cubic-bezier(0.23, 1, 0.32, 1);
@@ -83,7 +157,7 @@ body {
   content: "";
   position: absolute;
   left: 0;
-  top: 8px;
+  top: 7px;
   background: rgb(251 181 24);
   transition: top 300ms 300ms cubic-bezier(0.23, 1, 0.32, 1),
     transform 300ms cubic-bezier(0.23, 1, 0.32, 1);
@@ -115,7 +189,7 @@ body {
 }
 
 .mobile-nav {
-  background: rgb(252 182 24 / 89%);
+  background: rgb(0 0 0/ 89%);
   position: absolute;
   top: 0;
   width: 100vw;
@@ -133,23 +207,32 @@ body {
 
 .mobile-nav a {
   text-align: center;
-  font-size: 4vw;
-  color: #ffffff;
+  font-size: 23px;
+  font-family: "Fjalla One", sans-serif;
+    margin-bottom: 10px;
+  color: #fcb618;
   opacity: 0;
   transition: opacity 0.9s ease-in-out;
 }
 
 .mobile-nav.show a {
   text-align: center;
-  font-size: 4vw;
-  color: #ffffff;
+  font-size: 23px;
+  margin-bottom: 20px;
+  color: #fcb618;display:inline-block;text-decoration:none;
+  font-family: "Fjalla One", sans-serif;
   opacity: 1;
 }
 
 .mobile-nav a:hover {
-  color: #2980b9;
+  color: #fcb618;
 }
-
+.mobile-nav ul ul {
+    position: relative;
+    top: 50%;
+    transform: translateY(0%);
+    list-style: none;
+}
 
 
 
@@ -289,9 +372,7 @@ End of comment */
   margin: 5px;    display: inline-block;cursor: pointer;
 }
 .p-div-time:hover{ background: #fcb618;}
-/*.p-div-time.active,*/
-.p-div-time:has(:checked)
-{ background: #fcb618;}
+.p-div-time.active{ background: #fcb618;}
 .p-div-time1{
   text-align: center;
   width: 100%;
@@ -379,7 +460,7 @@ End of comment */
 #msform ul {
 	margin: 0;
 	padding: 0;
-	margin-bottom: 10px;
+	margin-bottom: 30px;
 }
 #msform fieldset {
 	border: 0 none;
@@ -1680,3 +1761,39 @@ body {background: #eeeae9;}
 		.calendar .datepicker table {
 			width: 100%;
 		}
+		
+		
+		
+@media all and (min-width:981px) and (max-width:1100px){
+
+	
+}
+@media all and (max-width:980px){
+
+}
+@media all and (max-width:768px){
+.bg-section h1 {
+    font-size: 40px;
+}
+.hamburger-menu {
+    z-index: 999;
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    height: 55px;
+    cursor: pointer;
+}
+.p-div-time {
+    text-align: center;
+width: 46%;}
+}
+
+@media all and (max-width:767px){
+
+
+}
+
+@media all and (max-width:479px){
+ 
+}
+
