@@ -20,14 +20,7 @@ if (empty($packages)) {
     exit();
 }
 
-$package = $packages[array_key_first($packages)];
-//
-//var_dump($package);
-//exit();
-// TODO: If no package is found, redirect to the home page
-
-// Get non available times
-// Get available time for given
+$package = count($packages) ? $packages[array_key_first($packages)] : null;
 
 ?>
     <!doctype html>
@@ -108,10 +101,16 @@ $package = $packages[array_key_first($packages)];
     <section class="bg-section">
         <div class="container">
             <div class="row">
+                <?php if(count($packages)) : ?>
                 <div class="col-lg-12 col-md-12">
                     <h1><?=$package->formattedType()?></h1>
                     <p> ($<?=$package->price?> each)</p>
                 </div>
+                <?php else: ?>
+                <div class="col-lg-12 col-md-12">
+                    <h1>Reservation</h1>
+                </div>
+                <?php endif; ?>
 
     </section>
     <form action="form-handler.php" aria-label="Contact form" class="wpcf7-form init" data-status="init" method="post">

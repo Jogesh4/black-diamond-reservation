@@ -51,12 +51,9 @@ function getAvailableTimeSlots($date, PDO $connection, $onlyAvailable = false)
 
     $finalTimeSlots = [];
     foreach ($allTimeSlots as $timeSlot) {
-        if (in_array($timeSlot, $bookedTimeSlots)) {
+        if (isSlotReserved($timeSlot, $reservations)) {
             if (!$onlyAvailable) {
-                $reservation = array_filter($reservations, function ($reservation) use ($timeSlot) {
-                    return date('H:i', strtotime($reservation['time'])) === $timeSlot;
-                });
-                $reservation = array_shift($reservation);
+                $reservation = reservationAt($timeSlot, $reservations);
                 $formattedTime = date('h:i A', strtotime($timeSlot));
                 $finalTimeSlots[] = [
                     'available' => false,
@@ -78,4 +75,49 @@ function getAvailableTimeSlots($date, PDO $connection, $onlyAvailable = false)
     }
 
     return $finalTimeSlots;
+}
+
+function isSlotReserved($timeSlot, $reservations){
+    $timeSlot = date('H:i', strtotime($timeSlot));
+    $reservedTimeSlot = [];
+    foreach ($reservations as $reservation) {
+        $durationInHours = $reservation['duration'] ?? 1;
+
+        for ($i = 0; $i < $durationInHours; $i++) {
+            $reservedTimeSlot[] = date('H:i', strtotime($reservation['time']) + $i * 60 * 60);
+        }
+    }
+
+    return in_array($timeSlot, $reservedTimeSlot);
+}
+
+function reservationAt($timeSlot, $reservations){
+    $timeSlot = date('H:i', strtotime($timeSlot));
+    $foundReservation = null;
+    foreach ($reservations as $reservation) {
+        $reservedSlots = [];
+        $durationInHours = $reservation['duration'] ?? 1;
+
+        for ($i = 0; $i < $durationInHours; $i++) {
+            $reservedSlots[] = date('H:i', strtotime($reservation['time']) + $i * 60 * 60);
+        }
+
+        if (in_array($timeSlot, $reservedSlots)) {
+            $foundReservation = $reservation;
+            break;
+        }
+    }
+
+    return $foundReservation;
+}
+
+function isSlotBooked($timeSlot, $bookedTimeSlots){
+    // it should check the duration too
+    $timeSlotBooked = [];
+
+    foreach ($bookedTimeSlots as $bookedTimeSlot) {
+        // Add it to the booked time slots
+        $bookedTimeSlot = date('H:i', strtotime($bookedTimeSlot));
+        $duration = 1;
+    }
 }

@@ -12,11 +12,12 @@ unset($_SESSION['form_errors']);
  */
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $formUrl = $pageUrl. '/form.php?type=' . $_POST['type']. '&pack=' . $_POST['pack'];
     $errors = validateFormData($_POST);
 
     if(count($errors)){
         $_SESSION['form_errors'] = $errors;
-        header('Location: '. $pageUrl. '/form.php');
+        header('Location: '. $formUrl);
         exit();
     }
 
@@ -54,7 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt->execute();
 
     $_SESSION['form_success'] = 'Your reservation has been successfully submitted!';
-    header('Location: '. $pageUrl. '/form.php');
+    header('Location: '. $formUrl);
     exit();
 }
 
