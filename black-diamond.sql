@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 20, 2024 at 11:46 AM
+-- Generation Time: Feb 23, 2024 at 02:22 PM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.0.23
 
@@ -31,6 +31,8 @@ CREATE TABLE `reservation` (
   `reservation_id` int(11) NOT NULL,
   `date` date NOT NULL,
   `time` time NOT NULL,
+  `type` varchar(191) NOT NULL,
+  `pack` varchar(191) NOT NULL,
   `number_of_guests` int(11) NOT NULL,
   `duration` varchar(50) DEFAULT NULL,
   `quantity` int(11) DEFAULT NULL,
