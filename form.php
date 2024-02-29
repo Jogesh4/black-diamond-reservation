@@ -223,14 +223,35 @@ $package = count($packages) ? $packages[array_key_first($packages)] : null;
                             <div class="col-lg-6 col-md-6">
                                 <h6 class="pb-2">How Long? </h6>
                                 <p>
-                                    <label class="p-div-time1 active">
-                                        <input type="hidden" value="2" name="duration"/>
-                                        2:00 Hours
-                                    </label>
+<!--                                    // Make it select with 1-12 hours-->
+                                    <select class="form-select p-div-time1 active" aria-label="Select" name="duration">
+                                        <option selected value="1">1:00 Hours</option>
+                                        <option value="2">2:00 Hours</option>
+                                        <option value="3">3:00 Hours</option>
+                                        <option value="4">4:00 Hours</option>
+                                        <option value="5">5:00 Hours</option>
+                                        <option value="6">6:00 Hours</option>
+                                        <option value="7">7:00 Hours</option>
+                                        <option value="8">8:00 Hours</option>
+                                        <option value="9">9:00 Hours</option>
+                                        <option value="10">10:00 Hours</option>
+                                        <option value="11">11:00 Hours</option>
+                                        <option value="12">12:00 Hours</option>
+                                    </select>
+<!--                                    <label class="p-div-time1 active">-->
+<!--                                        <input type="hidden" value="2" name="duration"/>-->
+<!--                                        2:00 Hours-->
+<!--                                    </label>-->
                                 </p>
                             </div>
                             <div class="col-lg-6 col-md-6">
-                                <h6 class="pb-4">Select Number of Lanes
+                                <h6 class="pb-4">
+<!--                                    If packageis Birthday make it Number of Person -->
+                                    <?php if($type === 'birthday') : ?>
+                                        Select Number of Person
+                                    <?php else: ?>
+                                        Select Number of Lanes
+                                    <?php endif; ?>
                                 </h6>
                                 <p><span class="wpcf7-form-control-wrap" data-name="menu-51"><select
                                                 aria-invalid="false"
