@@ -277,7 +277,7 @@ function getReservations($page, $itemsPerPage)
                         calendar.addEventSource(eventsCache[start][end]);
                     } else {
                         $.ajax({
-                            url: 'http://localhost/black-diamond/bookings.php',
+                            url: '<?=$pageUrl?>/bookings.php',
                             data: {
                                 start: start,
                                 end: end
