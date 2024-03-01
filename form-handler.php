@@ -114,5 +114,5 @@ function validateFormData($data): array
     return $errors;
 }
 
-header('Location: '. $pageUrl. '/form.php');
+header('Location: /');
 exit();
