@@ -3,6 +3,8 @@
 include_once __DIR__. '/classes/Package.php';
 include_once __DIR__. '/classes/BirthdayFunPackage.php';
 include_once __DIR__. '/classes/PoolPackage.php';
+include_once __DIR__. '/classes/BowlingPackage.php';
+include_once __DIR__. '/classes/CosmicPackage.php';
 
 $basicPackage = new BirthdayFunPackage(
     'Basic Package',

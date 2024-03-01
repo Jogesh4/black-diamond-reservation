@@ -9,7 +9,7 @@ include_once __DIR__ . '/includes/Package.php';
 include_once __DIR__ . '/includes/env.php';
 
 $type = $_GET['type'] ?? null;
-$pack = $_GET['fun'] ?? null;
+$pack = $_GET['fun'] ?? $_GET['pack'] ??null;
 
 $packages = [];
 if ($type && $pack) {
