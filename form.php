@@ -250,6 +250,8 @@ $package = count($packages) ? $packages[array_key_first($packages)] : null;
 <!--                                    If packageis Birthday make it Number of Person -->
                                     <?php if($type === 'birthday') : ?>
                                         Select Number of Person
+                                    <?php elseif($type === 'pool') : ?>
+                                        Select Number of Table
                                     <?php else: ?>
                                         Select Number of Lanes
                                     <?php endif; ?>
