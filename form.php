@@ -134,10 +134,18 @@ $package = count($packages) ? $packages[array_key_first($packages)] : null;
                     <div class="alert alert-success" role="alert">
                         <?= $_SESSION['form_success'] ?>
                     </div>
+                <?php elseif(isset($_GET['success']) && $_GET['success'] === '1') : ?>
+                    <div class="alert alert-success" role="alert">
+                        Your reservation has been successfully submitted!
+                    </div>
                 <?php endif; ?>
                 <?php if (isset($errors) && count($errors)) : ?>
                     <div class="text-danger mb-2" role="alert">
                         Please fix the following errors:
+                    </div>
+                <?php elseif (isset($_GET['success']) && $_GET['success'] === '0') : ?>
+                    <div class="alert alert-danger" role="alert">
+                        There was an error submitting your reservation. Please try again.
                     </div>
                 <?php endif; ?>
                 <?php foreach ($errors as $key => $value) : ?>

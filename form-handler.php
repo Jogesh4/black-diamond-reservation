@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if(count($errors)){
         $_SESSION['form_errors'] = $errors;
-        header('Location: '. $formUrl);
+        header('Location: '. $formUrl.'&success=0');
         exit();
     }
 
@@ -57,7 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt->execute();
 
     $_SESSION['form_success'] = 'Your reservation has been successfully submitted!';
-    header('Location: '. $formUrl);
+    header('Location: '. $formUrl.'&success=1');
     exit();
 }
 
