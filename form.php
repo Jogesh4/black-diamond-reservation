@@ -6,6 +6,7 @@ if (session_status() !== PHP_SESSION_ACTIVE) session_start();
 $errors = $_SESSION['form_errors'] ?? [];
 
 include_once __DIR__ . '/includes/Package.php';
+include_once __DIR__ . '/includes/env.php';
 
 $type = $_GET['type'] ?? null;
 $pack = $_GET['fun'] ?? null;
