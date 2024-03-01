@@ -27,6 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $pack = $_POST['pack'];
     $numberOfGuests = $_POST['number_of_guests'];
     $duration = $_POST['duration'];
+    $shoeRentals = isset($_POST['shoe_rentals']) ? 1 : 0;
     $quantity = $_POST['quantity'];
     $name = $_POST['name'];
     $email = $_POST['email'];
@@ -35,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $subscribe = isset($_POST['subscribe']) ? 1 : 0;
     $rememberMe = isset($_POST['remember_me']) ? 1 : 0;
 
-    $sql = "INSERT INTO reservation (date, time, type, pack, number_of_guests, duration, quantity, name, email, phone, message, subscribe, remember_me) VALUES (:date, :time, :type, :pack, :numberOfGuests, :duration, :quantity, :name, :email, :phone, :message, :subscribe, :rememberMe)";
+    $sql = "INSERT INTO reservation (date, time, type, pack, number_of_guests, duration, quantity, shoe_rental, name, email, phone, message, subscribe, remember_me) VALUES (:date, :time, :type, :pack, :numberOfGuests, :duration, :quantity, :shoeRental, :name, :email, :phone, :message, :subscribe, :rememberMe)";
 
     $stmt = $connection->prepare($sql);
     $stmt->bindParam(":date", $date);
@@ -45,6 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt->bindParam(":numberOfGuests", $numberOfGuests);
     $stmt->bindParam(":duration", $duration);
     $stmt->bindParam(":quantity", $quantity);
+    $stmt->bindParam(":shoeRental", $shoeRentals);
     $stmt->bindParam(":name", $name);
     $stmt->bindParam(":email", $email);
     $stmt->bindParam(":phone", $phone);
