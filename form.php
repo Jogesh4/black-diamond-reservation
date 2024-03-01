@@ -2765,7 +2765,7 @@ $package = count($packages) ? $packages[array_key_first($packages)] : null;
             }
 
             // Define the URL of the API endpoint
-            const url = `http://localhost/black-diamond/available-date.php?date=${date}`;
+            const url = `<?=$pageUrl?>/available-date.php?date=${date}`;
 
             // Send a GET request to the server
             fetch(url)

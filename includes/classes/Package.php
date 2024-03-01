@@ -18,9 +18,9 @@ class Package {
     public string $name;
 
     /**
-     * @var int The price of the package.
+     * @var float The price of the package.
      */
-    public int $price;
+    public float $price;
 
     /**
      * @var string The description of the package.
