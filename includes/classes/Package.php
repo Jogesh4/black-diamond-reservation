@@ -31,10 +31,10 @@ class Package {
      * Package constructor.
      *
      * @param string $name The name of the package.
-     * @param int $price The price of the package.
+     * @param float $price The price of the package.
      * @param string $description The description of the package.
      */
-    public function __construct(string $name, int $price, string $description) {
+    public function __construct(string $name, float $price, string $description) {
         $this->name = $name;
         $this->price = $price;
         $this->description = $description;

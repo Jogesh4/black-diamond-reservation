@@ -22,11 +22,11 @@ class BirthdayFunPackage extends Package {
      * BirthdayFunPackage constructor.
      *
      * @param string $name The name of the package.
-     * @param int $price The price of the package.
+     * @param float $price The price of the package.
      * @param string $description The description of the package.
      * @param array $additionalItems The additional items included in the package.
      */
-    public function __construct(string $name, int $price, string $description, array $additionalItems) {
+    public function __construct(string $name, float $price, string $description, array $additionalItems) {
         parent::__construct($name, $price, $description);
         $this->additionalItems = $additionalItems;
     }

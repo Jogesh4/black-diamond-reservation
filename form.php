@@ -31,7 +31,7 @@ $package = count($packages) ? $packages[array_key_first($packages)] : null;
         <meta name="description" content="">
         <meta name="author" content="">
         <meta name="generator" content="">
-        <title>form</title>
+        <title>Book <?=$type?> - <?=$pack?></title>
         <!-- Bootstrap core CSS -->
         <link href="../form/css/bootstrap.min.css" rel="stylesheet">
         <!-- Custom styles for this template -->
