@@ -17,7 +17,7 @@ if ($type && $pack) {
 }
 
 if (empty($packages)) {
-    header('Location: ' . $pageUrl . '/index.php');
+    header('Location: /');
     exit();
 }
 
