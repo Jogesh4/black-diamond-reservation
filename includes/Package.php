@@ -29,7 +29,7 @@ $ultimatePackage = new BirthdayFunPackage(
 
 $dayDeal = new PoolPackage('Day Deal', 15, 'prices are per PERSON and include tax All-you-can-play from Open- 5pm');
 $nightDeal = new PoolPackage('Night Deal', 15, 'prices are per PERSON and include tax All-you-can-play from 5pm-Close');
-$dayDeal2 = new PoolPackage('Day Deal', 25, 'prices are per PERSON and include tax All you can play from Open - Close');
+$dayDeal2 = new PoolPackage('Day Deals', 25, 'prices are per PERSON and include tax All you can play from Open - Close');
 $challengeMatch = new PoolPackage('Challenge Match', 7.50, 'prices are per PERSON and include tax for league members');
 
 $oneGameOneChild = new BowlingPackage('1 Game for 1 Child', 4.80, 'Families welcome, 19+ after 7pm on Friday and Saturday nights *prices include tax*');
