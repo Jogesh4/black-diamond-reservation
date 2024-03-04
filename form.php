@@ -277,9 +277,9 @@ $package = count($packages) ? $packages[array_key_first($packages)] : null;
                         
 
                         <?php if(isset($package->shoeRental) && $package->shoeRental) : ?>
-                            <div class="col-12">
-                                <h6 class="pb-2">Shoe Rentals ($3.10 each)</h6>
-                                <p>All bowlers are required to wear bowling shoes.</p>
+                            <div class="col-12" style="text-align: left;">
+                                <h6 class="pb-2 m-0">Shoe Rentals ($3.10 each)</h6>
+                                <p class="m-0">All bowlers are required to wear bowling shoes.</p>
                                 <label>
                                     <input type="checkbox" name="shoe_rental" value="1">
                                     I need shoe rentals
