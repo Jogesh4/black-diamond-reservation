@@ -2,6 +2,6 @@
 
 class CosmicPackage extends Package
 {
-    public string $type  = 'bowling';
+    public string $type  = 'cosmic';
     public bool $shoeRental = false;
 }
