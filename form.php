@@ -272,18 +272,20 @@ $package = count($packages) ? $packages[array_key_first($packages)] : null;
                                                     value="3">3</option><option value="4">4</option></select></span>
                                 </p>
                                 
-                                <?php if(isset($package->shoeRental) && $package->shoeRental) : ?>
-                                <div class="col-lg-12 col-md-12">
-                                    <h6 class="pb-2">Shoe Rentals ($3.10 each)</h6>
-                                    <p>All bowlers are required to wear bowling shoes.</p>
-                                    <label>
-                                        <input type="checkbox" name="shoe_rental" value="1">
-                                        I need shoe rentals
-                                    </label>
-                                </div>
-                                <?php endif; ?>
                             </div>
+
+                            <?php if(isset($package->shoeRental) && $package->shoeRental) : ?>
+                            <div class="col-12">
+                                <h6 class="pb-2">Shoe Rentals ($3.10 each)</h6>
+                                <p>All bowlers are required to wear bowling shoes.</p>
+                                <label>
+                                    <input type="checkbox" name="shoe_rental" value="1">
+                                    I need shoe rentals
+                                </label>
+                            </div>
+                        <?php endif; ?>
                         </div>
+                        
                     </div>
 
 
