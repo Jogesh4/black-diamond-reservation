@@ -273,8 +273,10 @@ $package = count($packages) ? $packages[array_key_first($packages)] : null;
                                 </p>
                                 
                             </div>
+                        </div>
+                        
 
-                            <?php if(isset($package->shoeRental) && $package->shoeRental) : ?>
+                        <?php if(isset($package->shoeRental) && $package->shoeRental) : ?>
                             <div class="col-12">
                                 <h6 class="pb-2">Shoe Rentals ($3.10 each)</h6>
                                 <p>All bowlers are required to wear bowling shoes.</p>
@@ -284,8 +286,6 @@ $package = count($packages) ? $packages[array_key_first($packages)] : null;
                                 </label>
                             </div>
                         <?php endif; ?>
-                        </div>
-                        
                     </div>
 
 
