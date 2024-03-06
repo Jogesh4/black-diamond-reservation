@@ -105,7 +105,7 @@ $package = count($packages) ? $packages[array_key_first($packages)] : null;
                 <?php if(count($packages)) : ?>
                 <div class="col-lg-12 col-md-12">
                     <h1><?=$package->formattedType()?></h1>
-                    <p> ($<?=$package->price?> each)</p>
+                    <p> (<?=$package->formattedPrice()?> each)</p>
                 </div>
                 <?php else: ?>
                 <div class="col-lg-12 col-md-12">

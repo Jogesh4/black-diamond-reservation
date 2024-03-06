@@ -6,6 +6,9 @@
  * This class represents a package with a type, name, price, and description.
  */
 class Package {
+    const PRICE_TYPE_FIXED = 'fixed';
+    const PRICE_TYPE_HOURLY = 'hourly';
+
 
     /**
      * @var string The type of the package.
@@ -26,6 +29,8 @@ class Package {
      * @var string The description of the package.
      */
     public string $description;
+
+    public string $priceType = self::PRICE_TYPE_FIXED;
 
     /**
      * Package constructor.
@@ -48,5 +53,10 @@ class Package {
     public function formattedType(): string
     {
         return ucfirst($this->type);
+    }
+
+    public function formattedPrice(): string
+    {
+        return $this->priceType === self::PRICE_TYPE_HOURLY ? '$' . $this->price . '/hr' : '$' . $this->price;
     }
 }
