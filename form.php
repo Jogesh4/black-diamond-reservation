@@ -52,6 +52,13 @@ $package = count($packages) ? $packages[array_key_first($packages)] : null;
               integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
               crossorigin="anonymous" referrerpolicy="no-referrer"/>
         <script src="https://kit.fontawesome.com/yourcode.js" crossorigin="anonymous"></script>
+        <style>
+            .hide {
+                opacity: 0;
+                left: 100%;
+                display: none;
+            }
+        </style>
     </head>
     <body style="background-color: #000; padding-bottom: 0px;overflow-x: hidden;">
     <section>
