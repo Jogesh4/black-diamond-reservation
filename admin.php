@@ -328,22 +328,22 @@ function getReservations($page, $itemsPerPage)
                     console.log(info, event)
 
                     // Populate the modal with the event data
-                    document.getElementById('event-title').textContent = event.title;
-                    document.getElementById('event-name').textContent = 'Name: ' + event.extendedProps.name;
-                    document.getElementById('event-email').textContent = 'Email: ' + event.extendedProps.email;
-                    document.getElementById('event-date').textContent = 'Date: ' + event.extendedProps.date;
-                    document.getElementById('event-time').textContent = 'Time: ' + event.extendedProps.time;
-                    document.getElementById('event-duration').textContent = 'Duration: ' + event.extendedProps.duration;
-                    document.getElementById('event-number_of_guests').textContent = 'Number of Guests: ' + event.extendedProps.number_of_guests;
-                    document.getElementById('event-pack').textContent = 'Pack: ' + event.extendedProps.pack;
-                    document.getElementById('event-phone').textContent = 'Phone: ' + event.extendedProps.phone;
-                    document.getElementById('event-quantity').textContent = 'Quantity: ' + (event.extendedProps.quantity ? event.extendedProps.quantity : 'N/A');
-                    document.getElementById('event-remember_me').textContent = 'Remember Me: ' + (event.extendedProps.rememberMe ? 'Yes' : 'No');
-                    document.getElementById('event-reservation_id').textContent = 'Reservation ID: ' + event.extendedProps.reservation_id;
-                    document.getElementById('event-subscribe').textContent = 'Subscribe: ' + (event.extendedProps.subscribe ? 'Yes' : 'No');
-                    document.getElementById('event-type').textContent = 'Type: ' + (event.extendedProps.type ? event.extendedProps.type : 'N/A');
-                    document.getElementById('event-message').textContent = 'Message: ' + event.extendedProps.message;
-                    document.getElementById('event-shoe-rental').textContent = 'Shoe Rental: ' + event.extendedProps.shoe_rental;
+                    document.getElementById('event-title').textContent = event.extendedProps.name +'-'+event.extendedProps.phone;
+                    // document.getElementById('event-name').textContent = 'Name: ' + event.extendedProps.name;
+                    // document.getElementById('event-email').textContent = 'Email: ' + event.extendedProps.email;
+                    document.getElementById('event-date').textContent = event.extendedProps.date;
+                    document.getElementById('event-time').textContent = event.extendedProps.time;
+                    document.getElementById('event-duration').textContent =event.extendedProps.duration;
+                    document.getElementById('event-number_of_guests').textContent = event.extendedProps.number_of_guests;
+                    document.getElementById('event-pack').textContent = event.extendedProps.pack;
+                    // document.getElementById('event-phone').textContent = 'Phone: ' + event.extendedProps.phone;
+                    document.getElementById('event-quantity').textContent =  (event.extendedProps.quantity ? event.extendedProps.quantity : 'N/A');
+                    document.getElementById('event-remember_me').textContent = (event.extendedProps.rememberMe ? 'Yes' : 'No');
+                    document.getElementById('event-reservation_id').textContent = event.extendedProps.reservation_id;
+                    document.getElementById('event-subscribe').textContent = (event.extendedProps.subscribe ? 'Yes' : 'No');
+                    document.getElementById('event-type').textContent = (event.extendedProps.type ? event.extendedProps.type : 'N/A');
+                    document.getElementById('event-message').textContent =  event.extendedProps.message;
+                    document.getElementById('event-shoe-rental').textContent =  event.extendedProps.shoe_rental;
 
                     // Show the modal
                     document.getElementById('event-modal').showModal();
@@ -425,27 +425,75 @@ function getReservations($page, $itemsPerPage)
 </script>
 <dialog id="event-modal" style="border: none; border-radius: 5px; width: 80%; max-width: 500px;">
     <header>
-        <h2 id="event-title" style="margin: 0;"></h2>
+        <h4 id="event-title" style="margin: 0;"></h4>
+        <h6 id="event-email" style="margin: 0;"></h6>
     </header>
     <div class="event-data">
-        <p id="event-name"></p>
-        <p id="event-email"></p>
-        <p id="event-date"></p>
-        <p id="event-time"></p>
-        <p id="event-duration"></p>
-        <p id="event-number_of_guests"></p>
-        <p id="event-pack"></p>
-        <p id="event-phone"></p>
-        <p id="event-quantity"></p>
-        <p id="event-remember_me"></p>
-        <p id="event-reservation_id"></p>
-        <p id="event-subscribe"></p>
-        <p id="event-type"></p>
-        <p id="event-message"></p>
-        <p id="event-shoe-rental"></p>
+        <!-- <p id="event-name"></p>
+        <p id="event-email"></p> -->
+        <p>
+            <strong>Date: </strong>
+            <span id="event-date"></span>
+        </p>
+        <p>
+            <strong>Time: </strong>
+            <span id="event-time"></span>
+        </p>
+        <p>
+            <strong>Duration: </strong>
+            <span id="event-duration"></span>
+        </p>
+        <p>
+            <strong>Number of Guests: </strong>
+            <span id="event-number_of_guests"></span>
+        </p>
+        <p>
+            <strong>Type: </strong>
+            <span id="event-type"></span>
+        </p>
+        <p>
+            <strong>Pack: </strong>
+            <span id="event-pack"></span>
+        </p>
+        <p>
+            <strong>Quantity: </strong>
+            <span id="event-quantity"></span>
+        </p>
+        <p>
+            <strong>Reservation id: </strong>
+            <span id="event-reservation_id"></span>
+        </p>
+        <p>
+            <strong>Subscribe: </strong>
+            <span id="event-subscribe"></span>
+        </p>
+        <p>
+            <strong>Remember Me: </strong>
+            <span id="event-remember_me"></span>
+        </p>
+        <p>
+            <strong>Message: </strong>
+            <span id="event-message"></span>
+        </p>
+        <p>
+            <strong>Shoe Rental: </strong>
+            <span id="event-shoe-rental"></span>
+        </p>
     </div>
     <button id="close-modal" class="btn btn-secondary" style="display: block; margin: 0 auto; grid-column: span 2;">Close</button>
 </dialog>
+
+
+
+
+
+
+
+
+
+
+
+
 
 <style>
     .event-data{
