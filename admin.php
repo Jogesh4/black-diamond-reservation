@@ -74,6 +74,20 @@ function getReservations($page, $itemsPerPage)
           integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <script src="https://kit.fontawesome.com/yourcode.js" crossorigin="anonymous"></script>
+    <style>
+        .fc-direction-ltr .fc-daygrid-event.fc-event-end, .fc-direction-rtl .fc-daygrid-event.fc-event-start{
+          color: inherit;
+          background: #3f366b;
+        }
+
+        a{
+            color: inherit;
+        }
+
+        .bg-section {
+            background:transparent;
+        }
+    </style>
 </head>
 <body style="background-color: #000; padding-bottom: 0px;overflow-x: hidden;">
 <section>
