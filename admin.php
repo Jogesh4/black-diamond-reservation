@@ -87,6 +87,13 @@ function getReservations($page, $itemsPerPage)
         .bg-section {
             background:transparent;
         }
+        .fc-daygrid-event{
+            font-size: 16px;
+            margin-bottom: 2px;
+        }
+        .fc .fc-daygrid-body-unbalanced .fc-daygrid-day-events{
+            margin: 3px;
+        }
     </style>
 </head>
 <body style="background-color: #000; padding-bottom: 0px;overflow-x: hidden;">
@@ -322,19 +329,21 @@ function getReservations($page, $itemsPerPage)
 
                     // Populate the modal with the event data
                     document.getElementById('event-title').textContent = event.title;
+                    document.getElementById('event-name').textContent = 'Name: ' + event.extendedProps.name;
                     document.getElementById('event-email').textContent = 'Email: ' + event.extendedProps.email;
                     document.getElementById('event-date').textContent = 'Date: ' + event.extendedProps.date;
                     document.getElementById('event-time').textContent = 'Time: ' + event.extendedProps.time;
                     document.getElementById('event-duration').textContent = 'Duration: ' + event.extendedProps.duration;
-                    document.getElementById('event-number_of_guests').textContent = 'Number of Guests: ' + event.extendedProps.numberOfGuests;
+                    document.getElementById('event-number_of_guests').textContent = 'Number of Guests: ' + event.extendedProps.number_of_guests;
                     document.getElementById('event-pack').textContent = 'Pack: ' + event.extendedProps.pack;
                     document.getElementById('event-phone').textContent = 'Phone: ' + event.extendedProps.phone;
                     document.getElementById('event-quantity').textContent = 'Quantity: ' + (event.extendedProps.quantity ? event.extendedProps.quantity : 'N/A');
                     document.getElementById('event-remember_me').textContent = 'Remember Me: ' + (event.extendedProps.rememberMe ? 'Yes' : 'No');
-                    document.getElementById('event-reservation_id').textContent = 'Reservation ID: ' + event.extendedProps.reservationId;
+                    document.getElementById('event-reservation_id').textContent = 'Reservation ID: ' + event.extendedProps.reservation_id;
                     document.getElementById('event-subscribe').textContent = 'Subscribe: ' + (event.extendedProps.subscribe ? 'Yes' : 'No');
                     document.getElementById('event-type').textContent = 'Type: ' + (event.extendedProps.type ? event.extendedProps.type : 'N/A');
                     document.getElementById('event-message').textContent = 'Message: ' + event.extendedProps.message;
+                    document.getElementById('event-shoe-rental').textContent = 'Shoe Rental: ' + event.extendedProps.shoe_rental;
 
                     // Show the modal
                     document.getElementById('event-modal').showModal();
@@ -419,6 +428,7 @@ function getReservations($page, $itemsPerPage)
         <h2 id="event-title" style="margin: 0;"></h2>
     </header>
     <div class="event-data">
+        <p id="event-name"></p>
         <p id="event-email"></p>
         <p id="event-date"></p>
         <p id="event-time"></p>
@@ -432,6 +442,7 @@ function getReservations($page, $itemsPerPage)
         <p id="event-subscribe"></p>
         <p id="event-type"></p>
         <p id="event-message"></p>
+        <p id="event-shoe-rental"></p>
     </div>
     <button id="close-modal" class="btn btn-secondary" style="display: block; margin: 0 auto; grid-column: span 2;">Close</button>
 </dialog>
