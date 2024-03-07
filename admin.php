@@ -330,7 +330,7 @@ function getReservations($page, $itemsPerPage)
                     // Populate the modal with the event data
                     document.getElementById('event-title').textContent = event.extendedProps.name +'-'+event.extendedProps.phone;
                     // document.getElementById('event-name').textContent = 'Name: ' + event.extendedProps.name;
-                    // document.getElementById('event-email').textContent = 'Email: ' + event.extendedProps.email;
+                    document.getElementById('event-email').textContent = event.extendedProps.email;
                     document.getElementById('event-date').textContent = event.extendedProps.date;
                     document.getElementById('event-time').textContent = event.extendedProps.time;
                     document.getElementById('event-duration').textContent =event.extendedProps.duration;
