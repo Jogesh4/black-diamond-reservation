@@ -163,7 +163,7 @@
 
                         <div style="line-height: 35px">
 
-                            <span style="color: #5caad2;">{{ APP_NAME }}:</span> New Reservation
+                            <span style="color: #5caad2;">{{ APP_NAME }}: </span> New Reservation
 
                         </div>
                     </td>
@@ -184,17 +184,6 @@
                 </tr>
 
                 <tr>
-                    <td height="70" style="font-size: 20px; line-height: 20px;">&nbsp;</td>
-                </tr>
-                <tr>
-                    <td align="center" style="color: #343434; font-size: 24px; font-family: Quicksand, Calibri, sans-serif; font-weight:700;letter-spacing: 3px; line-height: 35px;" class="main-header">
-                        <div style="line-height: 35px">
-                            <span style="color: #5caad2;">Black Diamond</span> New Reservation
-                        </div>
-                    </td>
-                </tr>
-
-                <tr>
                     <td align="center">
                         <table border="0" width="400" align="center" cellpadding="0" cellspacing="0" class="container590">
                             <tr>
@@ -209,11 +198,11 @@
                                         <strong>Pack:</strong> {{ pack }} <br>
                                         <strong>Number of Guests:</strong> {{ number_of_guests }} <br>
                                         <strong>Duration:</strong> {{ duration }} <br>
-                                        <strong>Shoe Rentals:</strong>strong> {{ shoe_rentals }} <br>
-                                        Quantity: {{ quantity }} <br>
-                                        Message: {{ message }} <br>
-                                        Subscribe: {{ subscribe }} <br>
-                                        Remember Me: {{ remember_me }} <br>
+                                        <strong>Shoe Rentals:</strong> {{ shoe_rentals }} <br>
+                                        <strong>Quantity:</strong> {{ quantity }} <br>
+<!--                                        <strong>Message:</strong> {{ message }} <br>-->
+<!--                                        <strong>Subscribe:</strong> {{ subscribe }} <br>-->
+<!--                                        <strong>Remember Me:</strong> {{ remember_me }} <br>-->
                                     </div>
                                 </td>
                             </tr>

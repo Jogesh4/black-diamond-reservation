@@ -12,6 +12,7 @@ $password = '';
 
 $pageUrl = 'http://localhost/black-diamond';
 
+if (!defined('APP_NAME')) define('APP_NAME', 'Black Diamond');
 if (!defined('MAIL_HOST')) define('MAIL_HOST', '');
 if (!defined('MAIL_USERNAME')) define('MAIL_USERNAME', '');
 if (!defined('MAIL_PASSWORD')) define('MAIL_PASSWORD', '');

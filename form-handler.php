@@ -35,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $numberOfGuests = $_POST['number_of_guests'];
     $duration = $_POST['duration'];
     $shoeRentals = isset($_POST['shoe_rentals']) ? 1 : 0;
-    $quantity = $_POST['quantity'];
+    $quantity = $_POST['quantity'] ?? 0;
     $name = $_POST['name'];
     $email = $_POST['email'];
     $phone = $_POST['phone'];
@@ -63,7 +63,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $stmt->execute();
 
-    $message = file_get_contents(__DIR__.'/includes/template_reservation_email.php');
+    $emailTemplate = file_get_contents(__DIR__.'/includes/template_reservation_email.php');
     $mail_variables = array();
     $mail_variables['name'] = $name;
     $mail_variables['email'] = $email;
@@ -79,11 +79,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $mail_variables['message'] = $message;
     $mail_variables['subscribe'] = $subscribe;
     $mail_variables['remember_me'] = $rememberMe;
-    $mail_variables['APP_NAME'] = $_ENV['APP_NAME'];
+    $mail_variables['APP_NAME'] = APP_NAME;
 
     $subject = 'New Reservation from ' . $name . ' for ' . $type . ' ' . $pack;
     foreach ($mail_variables as $key => $value) {
-        $message = str_replace('{{ ' . $key . ' }}', $value, $message);
+        $emailTemplate = str_replace('{{ ' . $key . ' }}', $value, $emailTemplate);
     }
 
     $mail = new PHPMailer(true);
@@ -103,9 +103,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $mail->isHTML();
         $mail->Subject = $subject;
-        $mail->Body    = $message;
+        $mail->Body    = $emailTemplate;
 
-        $mail->send();
+        $ot = $mail->send();
     } catch (Exception $e) {
 
         // for public use
