@@ -6,6 +6,13 @@ if(session_status() !== PHP_SESSION_ACTIVE ) session_start();
 include_once __DIR__ . '/includes/db.php';
 
 unset($_SESSION['form_errors']);
+use PHPMailer\PHPMailer\Exception;
+use PHPMailer\PHPMailer\PHPMailer;
+
+require_once(__DIR__.'/vendor/PHPMailer/src/Exception.php');
+require_once(__DIR__.'/vendor/PHPMailer/src/PHPMailer.php');
+require_once(__DIR__.'/vendor/PHPMailer/src/SMTP.php');
+
 
 /**
  * @var PDO $connection
@@ -55,6 +62,68 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt->bindParam(":rememberMe", $rememberMe);
 
     $stmt->execute();
+
+    $message = file_get_contents(__DIR__.'/includes/template_reservation_email.php');
+    $mail_variables = array();
+    $mail_variables['name'] = $name;
+    $mail_variables['email'] = $email;
+    $mail_variables['phone'] = $phone;
+    $mail_variables['date'] = $date;
+    $mail_variables['time'] = $time;
+    $mail_variables['type'] = $type;
+    $mail_variables['pack'] = $pack;
+    $mail_variables['number_of_guests'] = $numberOfGuests;
+    $mail_variables['duration'] = $duration;
+    $mail_variables['shoe_rentals'] = $shoeRentals;
+    $mail_variables['quantity'] = $quantity;
+    $mail_variables['message'] = $message;
+    $mail_variables['subscribe'] = $subscribe;
+    $mail_variables['remember_me'] = $rememberMe;
+    $mail_variables['APP_NAME'] = $_ENV['APP_NAME'];
+
+    $subject = 'New Reservation from ' . $name . ' for ' . $type . ' ' . $pack;
+    foreach ($mail_variables as $key => $value) {
+        $message = str_replace('{{ ' . $key . ' }}', $value, $message);
+    }
+
+    $mail = new PHPMailer(true);
+
+    try {
+
+        $mail->isSMTP();
+        $mail->Host = MAIL_HOST;
+        $mail->SMTPAuth = true;
+        $mail->Username = MAIL_USERNAME;
+        $mail->Password = MAIL_PASSWORD;
+        $mail->SMTPSecure = MAIL_ENCRYPTION;
+        $mail->Port = MAIL_PORT;
+
+        $mail->setFrom(MAIL_FROM_ADDRESS, MAIL_FROM_NAME);
+        $mail->addAddress(ADMIN_ADDRESS, ADMIN_NAME);
+
+        $mail->isHTML();
+        $mail->Subject = $subject;
+        $mail->Body    = $message;
+
+        $mail->send();
+    } catch (Exception $e) {
+
+        // for public use
+        $_SESSION['ERRORS']['status'] = 'message could not be sent. ERROR: ' . $mail->ErrorInfo;
+
+        // for development use
+        // $_SESSION['STATUS']['mailstatus'] = 'message could not be sent. ERROR: ' . $mail->ErrorInfo;
+
+        // Save log to file if mail failed to send
+        $log = date('Y-m-d H:i:s') . ' - ' . $mail->ErrorInfo . PHP_EOL.
+            'Subject: ' . $subject . PHP_EOL;
+        // if file does not exist, create it
+        if (!file_exists(__DIR__.'/logs/mail.log')) {
+            file_put_contents(__DIR__.'/logs/mail.log', '');
+        }
+
+        file_put_contents(__DIR__.'/logs/mail.log', $log, FILE_APPEND);
+    }
 
     $_SESSION['form_success'] = 'Your reservation has been successfully submitted!';
     header('Location: '. $formUrl.'&success=1');
