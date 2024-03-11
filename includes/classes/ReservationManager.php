@@ -9,8 +9,8 @@ class ReservationManager {
         $this->connection = $connection;
     }
 
-    public function getAvailableTimeSlots($date): array
+    public function getAvailableTimeSlots($date, $type): array
     {
-        return getAvailableTimeSlots($date, $this->connection);
+        return getAvailableTimeSlots($date, $type, $this->connection);
     }
 }

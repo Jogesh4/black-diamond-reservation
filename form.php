@@ -22,6 +22,8 @@ if (empty($packages)) {
 }
 
 $package = count($packages) ? $packages[array_key_first($packages)] : null;
+$guestCount = $package->maxPlayers ?? 30;
+$duration = $package->maxHours ?? 24;
 
 ?>
     <!doctype html>
@@ -215,24 +217,11 @@ $package = count($packages) ? $packages[array_key_first($packages)] : null;
                             <span class="wpcf7-form-control-wrap" data-name="menu-81">
                                 <select
                                         aria-invalid="false" class="wpcf7-form-control wpcf7-select form-control"
-                                        name="number_of_guests"><option value="1">1</option><option value="2">2</option><option
-                                            value="3">3</option><option value="4">4</option><option value="5">5</option><option
-                                            value="6">6</option><option value="7">7</option><option value="8">8</option><option
-                                            value="9">9</option><option value="10">10</option><option
-                                            value="11">11</option><option
-                                            value="12">12</option><option value="13">13</option><option
-                                            value="14">14</option><option
-                                            value="15">15</option><option value="16">16</option><option
-                                            value="17">17</option><option
-                                            value="18">18</option><option value="19">19</option><option
-                                            value="20">20</option><option
-                                            value="21">21</option><option value="22">22</option><option
-                                            value="23">23</option><option
-                                            value="24">24</option><option value="25">25</option><option
-                                            value="26">26</option><option
-                                            value="27">27</option><option value="28">28</option><option
-                                            value="29">29</option><option
-                                            value="30">30</option></select></span>
+                                        name="number_of_guests">
+                                    <?php for ($i = 1; $i <= $guestCount; $i++) : ?>
+                                        <option value="<?= $i ?>"><?= $i ?></option>
+                                    <?php endfor; ?>
+                                </select></span>
                             </p>
                         </div>
                         <div class="d-lg-flex">
@@ -241,18 +230,10 @@ $package = count($packages) ? $packages[array_key_first($packages)] : null;
                                 <p>
 <!--                                    // Make it select with 1-12 hours-->
                                     <select class="form-select p-div-time1 active" aria-label="Select" name="duration">
-                                        <option selected value="1">1:00 Hours</option>
-                                        <option value="2">2:00 Hours</option>
-                                        <option value="3">3:00 Hours</option>
-                                        <option value="4">4:00 Hours</option>
-                                        <option value="5">5:00 Hours</option>
-                                        <option value="6">6:00 Hours</option>
-                                        <option value="7">7:00 Hours</option>
-                                        <option value="8">8:00 Hours</option>
-                                        <option value="9">9:00 Hours</option>
-                                        <option value="10">10:00 Hours</option>
-                                        <option value="11">11:00 Hours</option>
-                                        <option value="12">12:00 Hours</option>
+                                        <option value="0" disabled>Select Duration</option>
+                                        <?php for ($i = 1; $i <= $duration; $i++) : ?>
+                                            <option value="<?= $i ?>" <?= $i === 2 ? 'selected' : '' ?>><?= $i ?>:00 Hours</option>
+                                        <?php endfor; ?>
                                     </select>
 <!--                                    <label class="p-div-time1 active">-->
 <!--                                        <input type="hidden" value="2" name="duration"/>-->
@@ -2800,7 +2781,7 @@ $package = count($packages) ? $packages[array_key_first($packages)] : null;
             }
 
             // Define the URL of the API endpoint
-            const url = `<?=$pageUrl?>/available-date.php?date=${date}`;
+            const url = `<?=$pageUrl?>/available-date.php?date=${date}&type=<?=$type?>`;
 
             // Send a GET request to the server
             fetch(url)
@@ -2830,6 +2811,10 @@ $package = count($packages) ? $packages[array_key_first($packages)] : null;
         }
 
         function handleTimeSlots(timeSlots) {
+            // Add the maximum duration to the time slots
+            timeSlots.forEach(slot => {
+                slot.maxDuration = availableDurations(timeSlots, slot);
+            });
             const availableTimeSlots = timeSlots.filter(slot => slot.available);
 
             if (availableTimeSlots.length === 0) {
@@ -2846,6 +2831,7 @@ $package = count($packages) ? $packages[array_key_first($packages)] : null;
                     input.type = 'radio';
                     input.value = slot.time;
                     input.name = 'time';
+                    input.setAttribute('data-max-duration', slot.maxDuration);
                     label.appendChild(input);
 
                     if (index === 0) {
@@ -2855,6 +2841,31 @@ $package = count($packages) ? $packages[array_key_first($packages)] : null;
                     const text = document.createTextNode(slot.formattedTime);
                     label.appendChild(text);
                     slotParent.appendChild(label);
+
+                    // Add an event listener to the input element
+                    input.addEventListener('change', event => {
+                        const maxDuration = event.target.getAttribute('data-max-duration');
+
+                        const durationInput = document.querySelector('[name="duration"]');
+
+                        Array.from(durationInput.options).forEach(option => {
+                            if(maxDuration >= parseInt(option.value)){
+                                option.removeAttribute('disabled');
+                            }else{
+                                option.setAttribute('disabled', 'disabled');
+                            }
+                        });
+                    });
+                });
+
+                const firstSlot = availableTimeSlots[0];
+                const durationInput = document.querySelector('[name="duration"]');
+                Array.from(durationInput.options).forEach(option => {
+                    if(firstSlot.maxDuration >= parseInt(option.value)){
+                        option.removeAttribute('disabled');
+                    }else{
+                        option.setAttribute('disabled', 'disabled');
+                    }
                 });
             }
 
@@ -2864,6 +2875,20 @@ $package = count($packages) ? $packages[array_key_first($packages)] : null;
             // Handle the case when there are no available time slots
             // This could be displaying a message in the UI, logging a message to the console, etc.
             console.log('No available time slots for this date.');
+        }
+
+        function availableDurations(availableTimeSlots, slot){
+            const index = availableTimeSlots.findIndex(s => s.time === slot.time);
+            const newAvailableTimeSlots = availableTimeSlots.slice(index);
+            const nextIndex = newAvailableTimeSlots.findIndex(s => s.available === false);
+
+            if(nextIndex !== -1){
+                newAvailableTimeSlots.splice(nextIndex);
+            }
+
+            console.log(availableTimeSlots, slot, newAvailableTimeSlots);
+
+            return newAvailableTimeSlots.length;
         }
     </script>
     </body>

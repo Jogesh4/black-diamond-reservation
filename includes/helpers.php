@@ -1,7 +1,7 @@
 <?php
 
 
-function getReservationsForDate($date, PDO $connection)
+function getReservationsForDate($date, $type, PDO $connection)
 {
     // Use the date as the cache key
 //    $cacheKey = "reservations_$date";
@@ -14,8 +14,9 @@ function getReservationsForDate($date, PDO $connection)
 
     $date = date('Y-m-d', strtotime($date)); // Convert the date to 'Y-m-d' format
 
-    $stmt = $connection->prepare('SELECT * FROM reservation WHERE date = :date');
+    $stmt = $connection->prepare('SELECT * FROM reservation WHERE date = :date AND type = :type');
     $stmt->bindParam(':date', $date);
+    $stmt->bindParam(':type', $type);
     $stmt->execute();
 
     // log execute query
