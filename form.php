@@ -2892,7 +2892,11 @@ $duration = $package->maxHours ?? 24;
         function handleNoSlotsAvailable() {
             // Handle the case when there are no available time slots
             // This could be displaying a message in the UI, logging a message to the console, etc.
-            console.log('No available time slots for this date.');
+            console.log('No time slots available');
+
+            const slotParent = document.querySelector('.available-time-slots');
+            slotParent.innerHTML = '';
+            slotParent.innerHTML = '<p>No time slots available</p>';
         }
 
         function availableDurations(availableTimeSlots, slot){
