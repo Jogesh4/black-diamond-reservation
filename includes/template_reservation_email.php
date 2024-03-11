@@ -198,7 +198,7 @@
                                         <strong>Pack:</strong> {{ pack }} <br>
                                         <strong>Number of Guests:</strong> {{ number_of_guests }} <br>
                                         <strong>Duration:</strong> {{ duration }} <br>
-                                        <strong>Shoe Rentals:</strong> {{ shoe_rentals }} <br>
+                                        <strong>Shoe Rentals:</strong> {{ shoe_rental }} <br>
                                         <strong>Quantity:</strong> {{ quantity }} <br>
 <!--                                        <strong>Message:</strong> {{ message }} <br>-->
 <!--                                        <strong>Subscribe:</strong> {{ subscribe }} <br>-->

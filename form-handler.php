@@ -13,7 +13,12 @@ require_once(__DIR__.'/vendor/PHPMailer/src/Exception.php');
 require_once(__DIR__.'/vendor/PHPMailer/src/PHPMailer.php');
 require_once(__DIR__.'/vendor/PHPMailer/src/SMTP.php');
 
-
+function titleCase($string): string
+{
+    // Remove hyphens and underscores and capitalize the first letter of each word
+    $string = str_replace(['-', '_'], ' ', $string);
+    return ucwords(strtolower($string));
+}
 /**
  * @var PDO $connection
  */
@@ -34,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $pack = $_POST['pack'];
     $numberOfGuests = $_POST['number_of_guests'];
     $duration = $_POST['duration'];
-    $shoeRentals = isset($_POST['shoe_rentals']) ? 1 : 0;
+    $shoeRentals = isset($_POST['shoe_rental']) ? 1 : 0;
     $quantity = $_POST['quantity'] ?? 0;
     $name = $_POST['name'];
     $email = $_POST['email'];
@@ -70,15 +75,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $mail_variables['phone'] = $phone;
     $mail_variables['date'] = $date;
     $mail_variables['time'] = $time;
-    $mail_variables['type'] = $type;
-    $mail_variables['pack'] = $pack;
+    $mail_variables['type'] = titleCase($type);
+    $mail_variables['pack'] = titleCase($pack);
     $mail_variables['number_of_guests'] = $numberOfGuests;
     $mail_variables['duration'] = $duration;
-    $mail_variables['shoe_rentals'] = $shoeRentals;
+    $mail_variables['shoe_rental'] = $shoeRentals ? 'Yes' : 'No';
     $mail_variables['quantity'] = $quantity;
     $mail_variables['message'] = $message;
-    $mail_variables['subscribe'] = $subscribe;
-    $mail_variables['remember_me'] = $rememberMe;
+    $mail_variables['subscribe'] = $subscribe ? 'Yes' : 'No';
+    $mail_variables['remember_me'] = $rememberMe ? 'Yes' : 'No';
     $mail_variables['APP_NAME'] = APP_NAME;
 
     $subject = 'New Reservation from ' . $name . ' for ' . $type . ' ' . $pack;
