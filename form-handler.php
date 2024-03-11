@@ -140,8 +140,25 @@ function validateFormData($data): array
     unset($_SESSION['form_errors']);
     $errors = [];
 
+    // if website is filled out, it's a spam bot
+    if (!empty($data['website'])) {
+        return $errors;
+    }
+
     if (empty($data['email']) || !filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
         $errors['email'] = 'Please enter a valid email address.';
+    }
+
+    $blockedPatterns = [
+        '/\b(?:example|test|spam)\b/i',
+        '/\b(?:mailinator\.com|guerrillamail\.com|10mail\.org)\b/i',
+    ];
+
+    foreach ($blockedPatterns as $pattern) {
+        if (preg_match($pattern, $data['email'])) {
+            $errors['email'] = 'Please enter a valid email address.';
+            break;
+        }
     }
 
     // Example: Validate date format (YYYY-MM-DD)
@@ -172,6 +189,65 @@ function validateFormData($data): array
     // Example: Validate message length
     if (strlen($data['message']) > 255) {
         $errors['message'] = 'Please enter a message with less than 255 characters.';
+    }
+
+    $spamKeywords = [
+        'make money',
+        'private photos',
+        'earn $100',
+        'Double your income',
+        'Get paid',
+        'Get rich',
+        'Make money fast',
+        'Make money now',
+        'Make money today',
+        'Make money while you sleep',
+        'Make money with no investment',
+        'Make money with no work',
+        'Make money with your computer',
+        'Make money with your email address',
+        'Make money with your home computer',
+        'Make money with your PC',
+        'Financial freedom',
+        'Free money',
+        'Earn extra cash',
+        'Enjoy lots of targeted traffic to your site for free!',
+        'QUICK WAY TO MAKE MONEY',
+        'Receipt of money to your account',
+        'Your account has been replenished ',
+        'Your account has been credited',
+        'Get your website to Google first page',
+        'Your website has been approved for submission to our directory',
+        'Unpublished private photos',
+        'money',
+        'earn',
+        'profit',
+        'limited offer',
+        'website design',
+        'marketing',
+        'directory submission',
+        'free traffic',
+        'approved',
+        'submission',
+        'leads',
+        'patent',
+        'trademark',
+        'tax season',
+        'private AI robot',
+        'unpublished private photos',
+        'naked Kim Kardashian',
+        'google listing',
+        'If this interests you, respond to this email with a YES.',
+        'Respond with YES',
+        'Respond with YES to this email',
+        'Respond with YES to this email and we will send you more information',
+    ];
+
+    foreach ($spamKeywords as $keyword) {
+        if (stripos(strtolower($data['message']),strtolower($keyword)) !== false) {
+            $errors['message'] = 'Please enter a valid message.';
+            break;
+        }
     }
 
 //    if (isset($data['subscribe']) && $data['subscribe'] != 1) {

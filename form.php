@@ -60,6 +60,22 @@ $duration = $package->maxHours ?? 24;
                 left: 100%;
                 display: none;
             }
+
+            .sr-only {
+                position: absolute;
+                width: 1px;
+                height: 1px;
+                padding: 0;
+                margin: -1px;
+                overflow: hidden;
+                clip: rect(0, 0, 0, 0);
+                white-space: nowrap;
+                border-width: 0;
+            }
+
+            .hidden {
+                display: none;
+            }
         </style>
     </head>
     <body style="background-color: #000; padding-bottom: 0px;overflow-x: hidden;">
@@ -171,7 +187,8 @@ $duration = $package->maxHours ?? 24;
                         <input type="hidden" name="date"/>
                         <input type="hidden" name="type" value="<?=$type?>"/>
                         <input type="hidden" name="pack" value="<?=$pack?>"/>
-                    </div>
+                        <label for="website" class="sr-only">Website (Leave blank)</label>
+                        <input type="text" id="website" name="website" class="hidden" />                    </div>
                     <div class="col-lg-6 col-md-6">
                         <div class="col-12 mb-3">
                             <h6 class="pb-2">We Can Offer You the Following Start Times</h6>
