@@ -30,11 +30,11 @@ function getReservationsForDate($date, $type, PDO $connection)
 }
 
 
-function getAvailableTimeSlots($date, PDO $connection, $onlyAvailable = false)
+function getAvailableTimeSlots($date, $type,  PDO $connection, $onlyAvailable = false)
 {
     // Get all reservations for the given date
     $date = date('Y-m-d', strtotime($date));
-    $reservations = getReservationsForDate($date, $connection);
+    $reservations = getReservationsForDate($date, $type, $connection);
 
     // Define a list of all possible time slots
     $secondInHour = 60 * 60;
