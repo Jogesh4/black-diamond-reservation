@@ -2754,10 +2754,14 @@ $package = count($packages) ? $packages[array_key_first($packages)] : null;
                 console.log("Got time slots:", timeSlots)
                 if (timeSlots === undefined) {
                     return;
+                }else{
+                    console.log('Time slots:', timeSlots);
+                    if (timeSlots.timeSlots && timeSlots.timeSlots.length > 0) {
+                        return handleTimeSlots(timeSlots.timeSlots);
+                    } else {
+                        handleNoSlotsAvailable();
+                    }
                 }
-
-
-                console.log('Time slots:', timeSlots);
 
                 $.getJSON("https://dl.dropboxusercontent.com/u/27474693/db.json", function (data) {
 
