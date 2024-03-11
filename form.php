@@ -2798,7 +2798,8 @@ $duration = $package->maxHours ?? 24;
             }
 
             // Define the URL of the API endpoint
-            const url = `<?=$pageUrl?>/available-date.php?date=${date}&type=<?=$type?>`;
+            const cacheBurster = Math.random().toString(36).substring(7);
+            const url = `<?=$pageUrl?>/available-date.php?date=${date}&type=<?=$type?>&cb=${cacheBurster}`;
 
             // Send a GET request to the server
             fetch(url)

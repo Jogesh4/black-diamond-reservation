@@ -16,6 +16,7 @@ $availableTimeSlots = $reservationManager->getAvailableTimeSlots($date, $type);
 header('Content-Type: application/json');
 $finalResponse = [];
 $finalResponse['date'] = $date;
+$finalResponse['type'] = $type;
 $finalResponse['timeSlots'] = $availableTimeSlots;
 echo json_encode($finalResponse);
 
