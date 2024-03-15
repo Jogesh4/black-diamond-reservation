@@ -105,6 +105,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $mail->setFrom(MAIL_FROM_ADDRESS, MAIL_FROM_NAME);
         $mail->addAddress(ADMIN_ADDRESS, ADMIN_NAME);
+        if(DEV_ADDRESS && DEV_NAME){
+            $mail->addCC(DEV_ADDRESS, DEV_NAME);
+        }
 
         $mail->isHTML();
         $mail->Subject = $subject;

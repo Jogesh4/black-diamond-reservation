@@ -22,3 +22,5 @@ if (!defined('MAIL_FROM_ADDRESS')) define('MAIL_FROM_ADDRESS', '');
 if (!defined('MAIL_FROM_NAME')) define('MAIL_FROM_NAME', 'Admin');
 if (!defined('ADMIN_ADDRESS')) define('ADMIN_ADDRESS', 'test@admin.com');
 if (!defined('ADMIN_NAME')) define('ADMIN_NAME', 'Admin');
+if (!defined('DEV_ADDRESS')) define('DEV_ADDRESS', 'info@justconsult.us');
+if (!defined('DEV_NAME')) define('DEV_NAME', 'Developer');
