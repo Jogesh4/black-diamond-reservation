@@ -10,8 +10,8 @@ include_once __DIR__ . '/includes/db.php';
 if (!isset($_SESSION['admin-logged']) || $_SESSION['admin-logged'] !== true) {
     // If not, redirect them to the login page
 
-    // header('Location: '.$pageUrl.'/login.php');
-    // exit;
+     header('Location: '.$pageUrl.'/login.php');
+     exit;
 }
 
 // Number of items per page
@@ -76,7 +76,7 @@ function getReservations($page, $itemsPerPage)
     <script src="https://kit.fontawesome.com/yourcode.js" crossorigin="anonymous"></script>
     <style>
         .fc-direction-ltr .fc-daygrid-event.fc-event-end, .fc-direction-rtl .fc-daygrid-event.fc-event-start{
-          color: inherit;
+          color: white;
           background: #3f366b;
         }
 
@@ -85,7 +85,8 @@ function getReservations($page, $itemsPerPage)
         }
 
         .bg-section {
-            background:transparent;
+            background: white;
+            color: black;
         }
         .fc-daygrid-event{
             font-size: 16px;
