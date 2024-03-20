@@ -9,9 +9,10 @@ include_once __DIR__ . '/includes/db.php';
 
 if (!isset($_SESSION['admin-logged']) || $_SESSION['admin-logged'] !== true) {
     // If not, redirect them to the login page
-
-     header('Location: '.$pageUrl.'/login.php');
-     exit;
+    if($_GET['login'] !== 'success') {
+        header('Location: ' . $pageUrl . '/login.php');
+        exit;
+    }
 }
 
 // Number of items per page

@@ -12,7 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // For simplicity, we're just checking against hardcoded values
     if ($username === 'admin' && $password === 'password') {
         $_SESSION['admin-logged'] = 'true';
-        header('Location: '.$pageUrl.'/admin.php?kdnsddsas');
+        header('Location: '.$pageUrl.'/admin.php?login=success');
         exit;
     } else {
         $error = 'Invalid username or password';
