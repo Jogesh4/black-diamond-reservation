@@ -113,14 +113,14 @@ function getReservations($page, $itemsPerPage)
             </div>
             <div class="mobile-nav hide">
                 <ul>
-                    <li><a href="https://wordpressmu-603031-4219011.cloudwaysapps.com/"><i class="fa fa-home"
+                    <li><a href="/"><i class="fa fa-home"
                                                                                            aria-hidden="true"></i> HOME</a>
                     </li>
-                    <li><a href="https://wordpressmu-603031-4219011.cloudwaysapps.com/about-us/"><i
+                    <li><a href="/about-us/"><i
                                     class="fa fa-file-text" aria-hidden="true"></i> About us</a></li>
                     <li data-bs-toggle="collapse" data-bs-target="#demo"><a class="dropdown-toggle"
                                                                             data-bs-toggle="dropdown"
-                                                                            href="https://wordpressmu-603031-4219011.cloudwaysapps.com/packages/"><i
+                                                                            href="/packages/"><i
                                     class="fa fa-list" aria-hidden="true"></i> Packages<span
                                     class="et_mobile_menu_arrow"></span></a>
                     </li>
@@ -128,15 +128,15 @@ function getReservations($page, $itemsPerPage)
                         <li><a href="#bowling">Bowling</a></li>
                         <li><a href="#pool">Pool</a></li>
                         <li><a href="#cosmic">Cosmic</a></li>
-                        <li><a href="https://wordpressmu-603031-4219011.cloudwaysapps.com/birthday-fun/">Birthday
+                        <li><a href="/birthday-fun/">Birthday
                                 Fun</a></li>
-                        <li><a href="https://wordpressmu-603031-4219011.cloudwaysapps.com/food-menu/">Food Menu</a></li>
+                        <li><a href="/food-menu/">Food Menu</a></li>
                     </ul>
 
-                    <li><a href="https://wordpressmu-603031-4219011.cloudwaysapps.com/blog/"><i class="fa fa-file-text"
+                    <li><a href="/blog/"><i class="fa fa-file-text"
                                                                                                 aria-hidden="true"></i>
                             Blog</a></li>
-                    <li><a href="https://wordpressmu-603031-4219011.cloudwaysapps.com/contact-us/"><i
+                    <li><a href="/contact-us/"><i
                                     class="fa fa-file-text" aria-hidden="true"></i> Contact Us</a></li>
 
                 </ul>
@@ -158,7 +158,7 @@ function getReservations($page, $itemsPerPage)
     <div class="container">
         <div class="row">
             <div class="col-lg-3 col-md-3 "><p><img class="img-fluid"
-                                                    src="https://wordpressmu-603031-4219011.cloudwaysapps.com/wp-content/uploads/2024/01/logo1-w.png">
+                                                    src="/wp-content/uploads/2024/01/logo1-w.png">
                 </p>
                 <p>We constantly have new projects on the go, so come on by and see what’s new!</p>
             </div>
@@ -167,19 +167,19 @@ function getReservations($page, $itemsPerPage)
                 <ul id="menu-footer" class="menu">
                     <li id="menu-item-291"
                         class="menu-item menu-item-type-post_type menu-item-object-page menu-item-291"><a
-                                href="https://wordpressmu-603031-4219011.cloudwaysapps.com/home/">Home</a></li>
+                                href="/home/">Home</a></li>
                     <li id="menu-item-290"
                         class="menu-item menu-item-type-post_type menu-item-object-page menu-item-290"><a
-                                href="https://wordpressmu-603031-4219011.cloudwaysapps.com/about-us/">About us</a></li>
+                                href="/about-us/">About us</a></li>
                     <li id="menu-item-289"
                         class="menu-item menu-item-type-post_type menu-item-object-page menu-item-289"><a
-                                href="https://wordpressmu-603031-4219011.cloudwaysapps.com/packages/">Packages</a></li>
+                                href="/packages/">Packages</a></li>
                     <li id="menu-item-288"
                         class="menu-item menu-item-type-post_type menu-item-object-page menu-item-288"><a
-                                href="https://wordpressmu-603031-4219011.cloudwaysapps.com/blog/">Blog</a></li>
+                                href="/blog/">Blog</a></li>
                     <li id="menu-item-287"
                         class="menu-item menu-item-type-post_type menu-item-object-page menu-item-287"><a
-                                href="https://wordpressmu-603031-4219011.cloudwaysapps.com/contact-us/">Contact Us</a>
+                                href="/contact-us/">Contact Us</a>
                     </li>
                 </ul>
             </div>
