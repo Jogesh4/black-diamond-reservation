@@ -8,6 +8,7 @@
  */
 class BirthdayFunPackage extends Package {
 
+    public const TYPE = 'birthday';
     /**
      * @var string The type of the package.
      */

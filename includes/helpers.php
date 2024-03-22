@@ -37,18 +37,14 @@ function getAvailableTimeSlots($date, $type,  PDO $connection, $onlyAvailable = 
     $reservations = getReservationsForDate($date, $type, $connection);
 
     // Define a list of all possible time slots
-    $secondInHour = 60 * 60;
-    $allTimeSlots = range(strtotime('09:00'), strtotime('22:00'), $secondInHour);
-    $allTimeSlots = array_map(function ($time) {
-        return date('H:i', $time);
-    }, $allTimeSlots);
+    $allTimeSlots = getAllTimeSlots($type);
 
-    $bookedTimeSlots = array_column($reservations, 'time');
-    $bookedTimeSlots = array_map(function ($time) {
-        return date('H:i', strtotime($time));
-    }, $bookedTimeSlots);
+//    $bookedTimeSlots = array_column($reservations, 'time');
+//    $bookedTimeSlots = array_map(function ($time) {
+//        return date('H:i', strtotime($time));
+//    }, $bookedTimeSlots);
 
-    $bookedTimeSlots = array_unique($bookedTimeSlots);
+//    $bookedTimeSlots = array_unique($bookedTimeSlots);
 
     $finalTimeSlots = [];
     foreach ($allTimeSlots as $timeSlot) {
@@ -76,6 +72,32 @@ function getAvailableTimeSlots($date, $type,  PDO $connection, $onlyAvailable = 
     }
 
     return $finalTimeSlots;
+}
+
+/**
+ * @return array|false[]|string[]
+ */
+function getAllTimeSlots(string $type = null): array
+{
+    // Rewrite it show it only allow 12:30 - 14:30 and 15:00 - 17:00 for type= birthday
+    if ($type === BirthdayFunPackage::TYPE) {
+        $secondInHour = 60 * 60;
+        $allTimeSlots = array_merge(
+            range(strtotime('12:30'), strtotime('14:30'), $secondInHour),
+            range(strtotime('15:00'), strtotime('17:00'), $secondInHour)
+        );
+
+        return array_map(function ($time) {
+            return date('H:i', $time);
+        }, $allTimeSlots);
+    }
+
+    $secondInHour = 60 * 60;
+    $allTimeSlots = range(strtotime('09:00'), strtotime('22:00'), $secondInHour);
+
+    return array_map(function ($time) {
+        return date('H:i', $time);
+    }, $allTimeSlots);
 }
 
 function isSlotReserved($timeSlot, $reservations){
