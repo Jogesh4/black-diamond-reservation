@@ -629,7 +629,55 @@ $duration = $package->maxHours ?? 24;
             </div>
         </div>
     </footer>
+    <?php if (isset($_SESSION['form_success']) || (isset($_GET['success']) && $_GET['success'] === '1')) : ?>
+    <dialog id="success-modal">
+        <div class="body">
+            <div class="icon">
+                <i class="fa fa-check"></i>
+            </div>
+            <h3>Success</h3>
+            <p>Thank you for your reservation. We will get back to you shortly.</p>
+            <button class="border-2 btn btn-outline-success w-100" onclick="this.closest('dialog').close()">Ok</button>
+        </div>
+    </dialog>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const modal = document.getElementById('success-modal');
+            modal.showModal();
+        })
+    </script>
+    <style>
+        .icon {
+            background: green;
+            width: 2rem;
+            aspect-ratio: 1;
+            border-radius: 9999px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bolder;
+        }
+
+        dialog#success-modal {
+            border: none;
+            width: 90vw;
+            max-width: 560px;
+        }
+
+        dialog#success-modal .body {
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        dialog[open]::backdrop{
+            backdrop-filter: blur(2px) brightness(0.5);
+        }
+    </style>
+    <?php endif; ?>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.min.js"></script>
