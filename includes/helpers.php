@@ -80,7 +80,7 @@ function getAvailableTimeSlots($date, $type,  PDO $connection, $onlyAvailable = 
 function getAllTimeSlots(string $type = null): array
 {
     // Rewrite it show it only allow 12:30 - 14:30 and 15:00 - 17:00 for type= birthday
-    if ($type === BirthdayFunPackage::TYPE) {
+    if ($type === 'birthday') {
         $secondInHour = 60 * 60;
         $allTimeSlots = array_merge(
             range(strtotime('12:30'), strtotime('14:30'), $secondInHour),
