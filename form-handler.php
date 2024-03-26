@@ -83,7 +83,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $mail_variables['quantity'] = $quantity;
     $mail_variables['message'] = $message;
     $mail_variables['subscribe'] = $subscribe ? 'Yes' : 'No';
-    $mail_variables['remember_me'] = $rememberMe ? 'Yes' : 'No';
+//    $mail_variables['remember_me'] = $rememberMe ? 'Yes' : 'No';
     $mail_variables['APP_NAME'] = APP_NAME;
 
     $subject = 'New Reservation from ' . $name . ' for ' . $type . ' ' . $pack;

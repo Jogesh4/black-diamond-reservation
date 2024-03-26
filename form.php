@@ -367,7 +367,7 @@ $duration = $package->maxHours ?? 24;
             </span>
                 <br>
                 <span class="wpcf7-form-control-wrap" data-name="checkbox-567">
-                <span class="wpcf7-form-control wpcf7-checkbox">
+                <span class="wpcf7-form-control wpcf7-checkbox" style="display:none;">
                     <span class="wpcf7-list-item first last">
                         <label>
                             <input name="remember_me" type="checkbox" value="1">
